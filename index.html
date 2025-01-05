@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BTS 粉絲網站 - ARMY WORLD</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #F2F7FF;
+            background-image: url('image/logo.02.png');
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center; 
+            background-attachment: fixed;
+
+        }
+
+        .container {
+            max-width: 1700px;
+            margin: 0 auto; 
+            padding: 0 60px; 
+            padding-top: 120px; 
+        }
+
+        header {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            z-index: 1000; 
+            background-color: #000000; 
+            border-bottom: 3px solid #C9DCFF; 
+            height: 80px; 
+        }
+
+        header .container {
+            max-width: 1700px; 
+            display: flex;
+            align-items: center; 
+            justify-content: space-between;
+            padding: 0 60px; 
+        }
+
+    
+        nav {
+            font-size: 18px;
+            display: flex;
+            justify-content:flex-end;
+            align-items: center; 
+        
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        
+        .menu li {
+            position: relative;
+        }
+
+        .menu > li > a {
+            color: #F2F7FF;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            display: block;
+            border-radius: 20px;
+        }
+
+        .menu > li > a:hover {
+            background-color: #B2C9FF;
+        }
+
+        .submenu {
+            font-size: 17px;
+            list-style: none;
+            position: absolute;
+            top: 100%;
+            background-color: #9D71E8;
+            padding: 0;
+            min-width: 150px;
+            border-radius: 20px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            
+        }
+        
+        .submenu li {
+            border-bottom: 3px dashed #C9DCFF; 
+        }
+
+        .submenu li a {
+            color: #F2F7FF;
+            text-decoration: none;
+            padding: 15px;
+            display: block;
+            text-align: center;
+            border-radius: 20px;
+        }
+
+        .submenu li a:hover {
+            background-color: #B2C9FF;
+        }
+
+        .submenu li:last-child  {
+            border-bottom: none;
+        }
+
+        .dash :last-child{
+            border-bottom: none;
+        }
+
+        .menu li:hover > .submenu {
+            display: block;
+        }
+
+        .submenu .submenu {
+            left: 100%;
+            top: 0;
+        }
+
+        #about {
+            text-align: center;
+            margin-bottom: 60px; 
+        }
+
+        .bts-section {
+            padding: 25px;
+            text-align: center;
+            position:relative;
+        }
+
+
+        .bts-image-text {
+            position: relative;
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start; 
+        }
+
+        .bts-image-text img {
+            width: 70%; 
+            height: auto;
+            border-radius: 15px; 
+            position: relative;
+            z-index: 1; 
+            mask-image: linear-gradient(to right, black 70%, transparent 100%); 
+            -webkit-mask-image: linear-gradient(to right, black 70%, transparent 100%);
+        }
+
+        .bts-text {
+            position: absolute;
+            right: 5%; 
+            width: 30%;
+            z-index: 2; 
+            color: #F2F7FF; 
+            text-align:center ;
+        }
+
+        #index {
+            padding: 30px;
+            scroll-margin-top: 80px; /* Header 的高度，防止遮擋 */
+        }
+
+        section {
+            margin-bottom: 10px;
+            border-bottom: 3px solid #C9DCFF;
+            padding: 50px 0;
+        }
+
+        section h2 {
+            color: #F2F7FF;
+            font-size: 40px; 
+            text-align: center; 
+            margin-bottom: 80px; 
+        }
+
+        .text-center h2{
+            margin-bottom: 10px;
+            padding: 50px 0 10px 0;
+            color: #F2F7FF;
+            font-size: 40px; 
+            text-align: center; 
+            margin-bottom: 80px; 
+        }
+
+        section h3 {
+            color: #F2F7FF;
+        }
+
+        .info-box {
+            display: flex; 
+            align-items: center; 
+            padding: 50px;
+            border-radius: 10px; 
+            margin-bottom: 80px;
+            gap: 20px; 
+        }
+
+        .info-box img {
+            max-width: 550px; 
+            height: auto; 
+            border-radius: 10px;
+            margin-left: 80px;
+            margin-right: 120px;
+        }
+
+        .info-box .info-text {
+            flex: 1; 
+            color: #C9DCFF; 
+            font-size: 18px; 
+            line-height: 1.8; 
+        }
+
+        
+        
+        @media (max-width: 768px) {
+        .info-box {
+            flex-direction: column; 
+            align-items: center; 
+        }
+
+        .info-box img {
+            max-width: 100%;
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+
+        .info-box .info-text {
+            text-align: center;
+        }
+        }
+
+
+       .album-grid {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 125px;
+            justify-content: flex-start;
+        }
+
+        .album-card {
+            max-width: 200px; 
+            background-color: #292929; 
+            padding: 20px;
+            border-radius: 10px; 
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); 
+        }
+
+        .album-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .album-card:hover {
+            transform: scale(1.05); 
+        }
+
+        .solo-album-container {
+            display: flex;
+            flex-direction: column; 
+            gap: 40px; 
+            margin-top: 40px;
+        }
+
+        .solo-item {
+            display: flex;
+            align-items: center; 
+            gap: 20px; 
+        }
+
+        .solo-image {
+            width: 300px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .solo-text {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px; 
+            color: #C9DCFF;
+        }
+
+        
+        .bt21-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 50px;
+            
+        }
+
+        .bt21-item {
+            display: flex;
+            flex-direction: row; 
+            align-items: center; 
+            border-radius: 10px; 
+            padding: 20px;
+        }
+
+        .bt21-item img {
+            width: 160px;
+            margin-right: 20px;
+        }
+
+        .endpage{
+            border-top: 3px solid #B2C9FF;
+            padding:10px 0 0 0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+        <div class="sign"><h1>ARMY WORLD</h1>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li>
+                    <a href="#index">BTS</a>
+                    <ul class="submenu">
+                        <li><a href="#about">團體專輯</a></li>
+                        <li>
+                            <a href="#member">成員</a>
+                            <ul class="submenu dash">
+                                <li><a href="#rm">RM</a></li>
+                                <li><a href="#jin">JIN</a></li>
+                                <li><a href="#suga">SUGA</a></li>
+                                <li><a href="#jhope">J-HOPE</a></li>
+                                <li><a href="#jimin">JIMIN</a></li>
+                                <li><a href="#v">V</a></li>
+                                <li><a href="#jungkook">JUNG KOOK</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#log">紀錄片</a>
+                    <ul class="submenu">
+                        <li><a href="#worldtour">BTS紀錄片</a></li>
+                        <li><a href="#soloprojects">個人專輯紀錄片</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#bt21">BT21</a>
+                    <ul class="submenu">
+                        <li><a href="#role intro">角色介紹</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section id="index" class="bts-section">
+                <div class="bts-image-text">
+                    <img src="image/bts_photo1.jpg" alt="BTS Group">
+                    <div class="bts-text">
+                        <h2>BTS（防彈少年團）</h2>
+                        <p>BTS是全球最受歡迎的偶像團體之一</p>
+                        <p>他們是來自韓國的七人男子組成的偶像團體，於2013年出道</p>
+                        <p>他們的音樂與表演吸引了千萬粉絲，充滿青春與活力</p>
+                        <p>以多樣化的音樂風格、觸動人心的歌詞和卓越的舞台表現風靡全球</p>
+                        <p>也是全球最具影響力的偶像團體之一，為粉絲帶來無數感動與力量</p>
+                    </div>
+                </div>
+            </section>
+            
+
+        <section id="about" class="album-section">
+            <h2>團體專輯</h2>
+            <div class="album-grid">
+                <a href="https://youtu.be/owjVpYCmwcg?si=b55IM_nRUWfSda9n" target="_blank" class="album-card">
+                    <img src="image/group_album1.jpg" alt="Take Two Album Cover">
+                    <h3>Take Two</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=OLAK5uy_kXhqIxygqFcOMsJEIFAb_8-X56HKv-chY&si=7bckRScINdQRmIjF" target="_blank" class="album-card">
+                    <img src="image/group_album2.jpg" alt="Proof Album Cover">
+                    <h3>Proof</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PL-YgdBBkmAS53DQ5MS0ErI4gBqYEbCrLI&si=TisZ10pmKcRv84lD" target="_blank" class="album-card">
+                    <img src="image/group_album4.jpg" alt="Butter Album Cover">
+                    <h3>BUTTER</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLvwxw_LiHMjhKgL7AjgOWUzI79xNDC2YM&si=vphw135M3U-fxTIi" target="_blank" class="album-card">
+                    <img src="image/group_album5.jpg" alt="BE Album Cover">
+                    <h3>BE</h3>
+                </a>
+                <a href="https://youtu.be/gdZLi9oWNZg?si=c9UOks-eKcWBxpmN" target="_blank" class="album-card">
+                    <img src="image/group_album6.jpg" alt="Dynamite Album Cover">
+                    <h3>DYNAMITE</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLmdI8z-p8UBOWbPRXHBw1z6XulHVt901N&si=QrOZdgUHnEk7Vjz3" target="_blank" class="album-card">
+                    <img src="image/group_album7.jpg" alt="RM Album 1">
+                    <h3>MAP OF THE SOUL:7</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PL91EbznIQz177PqH3bSEgnAwKJqmHnnMx&si=FF-mJVIr8hvzhJkD" target="_blank" class="album-card">
+                    <img src="image/group_album8.jpg" alt="RM Album 1">
+                    <h3>MAP OF THE SOUL:PERSONA</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PL-eVSSxdwRmy7LU6pMt5qg0AKFzFIjvE4&si=pxGScpdzMBoww1yt" target="_blank" class="album-card">
+                    <img src="image/group_album9.jpg" alt="RM Album 1">
+                    <h3>LOVE YOURSELF結'ANSWER'</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7odsw1WoIkj4D_w8NAqm9-2Q&si=iL_8wQyqQj9kGLhI" target="_blank" class="album-card">
+                    <img src="image/group_album10.jpg" alt="RM Album 1">
+                    <h3>LOVE YOURSELF轉'TEAR'</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=OLAK5uy_kp9bbGWFf3oguw3MpFh2KUx4bEGzjf4wE&si=288reGluHwF4Yqzi" target="_blank" class="album-card">
+                    <img src="image/group_album11.jpg" alt="RM Album 1">
+                    <h3>LOVE YOURSELF承'HER'</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=OLAK5uy_lxOVcqXyCVaCPMBbop3xSta98N1e1sRhc&si=U_Mm1_TXy3DBAu1A" target="_blank" class="album-card">
+                    <img src="image/group_album12.jpg" alt="RM Album 1">
+                    <h3>YOU NEVER WALK ALONE</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=OLAK5uy_m8BssCMhYW9gNZ8cYVIOAKRMn-qEnZcT0&si=kXUhaE2BMwr6RmFR" target="_blank" class="album-card">
+                    <img src="image/group_album13.jpg" alt="RM Album 1">
+                    <h3>WINGS</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7ocEU6g3IwQo2mG6LoEO6zZF&si=fvcoGfjs-z0PfXsH" target="_blank" class="album-card">
+                    <img src="image/group_album14.jpg" alt="RM Album 1">
+                    <h3>THE MOST BEAUTIFUL MOMENT IN LIFE : YOUNG FOREVER</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7ofqi7cUK6r0XKQRp1eXPwNy&si=dIgo8iUx0rqfY-D5" target="_blank" class="album-card">
+                    <img src="image/group_album15.jpg" alt="RM Album 1">
+                    <h3>THE MOST BEAUTIFUL MOMENT IN LIFE PT.2</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7oeCce-2gY2Gt3tjsNcQ9i_c&si=Hq_-gHYG9k-ojUAJ" target="_blank" class="album-card">
+                    <img src="image/group_album16.jpg" alt="RM Album 1">
+                    <h3>THE MOST BEAUTIFUL MOMENT IN LIFE PT.1</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7oe-NnLTHZAmRrakj6spxn6V&si=YPB75j9KpQalrmpq" target="_blank" class="album-card">
+                    <img src="image/group_album17.jpg" alt="RM Album 1">
+                    <h3>DARK & WILD</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7ocWMTgouSyp9kVruGlp9hmC&si=5T_YLAiuLOkkRpCE" target="_blank" class="album-card">
+                    <img src="image/group_album18.jpg" alt="RM Album 1">
+                    <h3>SKOOL LUV AFFAIR</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7odrLO4MBfb3fX2KIp5w_2Dp&si=mrVsh8HsxW_qVte3" target="_blank" class="album-card">
+                    <img src="image/group_album19.jpg" alt="RM Album 1">
+                    <h3>O!RUL8,2?</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PLgNAVqTsP7oe4wMf-9qTn-_C2IKmkbmsf&si=BLSO5zj0IjZ8f5fc" target="_blank" class="album-card">
+                    <img src="image/group_album20.jpg" alt="RM Album 1">
+                    <h3>2 COOL 4 SKOOL</h3>
+                </a>
+            </div>
+        </section>
+
+        <!-- 成員資訊 -->
+        <section id="rm" class="album-section">
+            <h2>RM（Rapper Monster / 金南俊 / Kim Nam-joon）</h2>
+            <div class="info-box">
+                <img src="image/rm2.jpg" alt="RM's photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1994年9月12日</p>
+                    <p><strong>位置：</strong>隊長、主Rapper</p>
+                    <p><strong>特點：</strong></p>
+                    <p>作為 BTS 的隊長，RM 不僅是團隊的精神支柱，也是思想深刻的創作者。</p>
+                    <P>他以超群的語言天賦(英語)，和沉穩的領導力聞名。</P>
+                    <p>在成為偶像之前，他曾是一位地下饒舌歌手，以尖銳又富有哲理的歌詞吸引眾人。</p>
+                    <p>他參與了大多數 BTS 歌曲的詞曲創作，用音樂表達了對社會、人生和個人成長的深刻思考。</p>
+                    <p>他的個人專輯《Mono.》被粉絲視為治癒系的寶藏。</p>
+                    <p>無論是舞台上的霸氣，還是私下的溫和與博學，RM都散發著獨特的魅力，難怪粉絲親切地稱他為「南俊先生」。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtube.com/playlist?list=PLBxlGtcUp1glFaOWCZO_5dVhmOiJhzO64&si=k2vns79SwiO4zb3q" target="_blank" class="album-card">
+                    <img src="image/rm_album1.jpg" alt="Right place, Wrong person">
+                    <h3>Right place, Wrong person</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=OLAK5uy_lnV6Uf8a9g0bz8D_m8rW2_z6bokxA_MR0&si=iyYzAbJIsAWZiS_m" target="_blank" class="album-card">
+                    <img src="image/rm_album2.jpg" alt="Indigo Album">
+                    <h3>Indigo</h3>
+                </a>
+                <a href="https://youtu.be/6uq3P7zeYyU?si=DfDXkZH7Vf7Z-L4x" target="_blank" class="album-card">
+                    <img src="image/rm_album3.jpg" alt="Bicycle Album">
+                    <h3>Bicycle</h3>
+                </a>
+                <a href="https://youtube.com/playlist?list=PL91EbznIQz16P69itaG8H6aj8tLzAEQlG&si=bhEYeT1fjzUn2f2a" target="_blank" class="album-card">
+                    <img src="image/rm_album4.jpg" alt="Mono Album">
+                    <h3>Mono.</h3>
+                </a>
+            </div>
+        </section>
+
+        <section id="jin" class="album-section">
+            <h2>Jin（金碩珍 / Kim Seok-jin）</h2>
+            <div class="info-box">
+                <img src="image/jin2.jpg" alt="Jin's photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1992年12月4日</p>
+                    <p><strong>位置：</strong>副主唱、外貌擔當</p>
+                    <p><strong>特點：</strong></p>
+                    <p>Jin 作為團隊的大哥，以成熟穩重又幽默風趣的性格備受喜愛。</p>
+                    <p>他在加入 BTS 之前是一名讀戲劇的學生，後來因為帥氣的外貌被星探發掘，踏入偶像的道路。</p>
+                    <p>他的聲音乾淨溫暖，尤其擅長表現情感豐富的抒情歌曲，比如《Epiphany》和《The Astronaut》。</p>
+                    <p>除了音樂天賦，他還擅長烹飪，常在團隊中扮演「廚師」的角色。</p>
+                    <p>他那張被粉絲稱為「Worldwide Handsome」的臉，雖然讓他備受矚目，但Jin卻更希望人們關注他的實力。</p>
+                    <p>他幽默的「冷笑話」更是團隊日常快樂的來源之一。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtube.com/playlist?list=OLAK5uy_lQgQRK3L9c6W2djFinwbFImTr-xoImsyE&si=G5rNK07A7U90UHOd" target="_blank" class="album-card">
+                    <img src="image/jin_album1.jpg" alt="HAPPY Album Cover">
+                    <h3>HAPPY</h3>
+                </a>
+                <a href="https://youtu.be/c6ASQOwKkhk?si=JnKtAAyWBb8yz5Q6" target="_blank" class="album-card">
+                    <img src="image/jin_album2.jpg" alt="The Astronaut Album Cover">
+                    <h3>The Astronaut</h3>
+                </a>
+                <a href="https://youtu.be/ArHGiOxYwHM?si=IrRVqbwqgv8nhnVa" target="_blank" class="album-card">
+                    <img src="image/jin_album3.jpg" alt="Super Tuna Album Cover">
+                    <h3>Super Tuna</h3>
+                </a>
+            </div>
+        </section>
+
+        <section id="suga" class="album-section">
+            <h2>SUGA（閔玧其 / Min Yoon-gi）</h2>
+            <div class="info-box">
+                <img src="image/suga2.jpg" alt="SUGA Photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1993年3月9日</p>
+                    <p><strong>位置：</strong>主Rapper、製作人</p>
+                    <p><strong>特點：</strong></p>
+                    <p>SUGA 是 BTS 的音樂核心之一，以精湛的詞曲創作能力和深刻的音樂理念著稱。</p>
+                    <p>在加入 BTS 之前，他已是大邱知名的地下音樂人，對音樂有著無限的熱情。</p>
+                    <p>他的作品常探討內心的掙扎、心理健康和人生哲理，真實又直擊人心。</p>
+                    <p>他以個人身份「Agust D」發行的 Mixtape，展現了強烈的個人色彩和音樂多樣性。</p>
+                    <p>儘管他在舞台上冷酷帥氣，但私下卻是個溫暖又愛照顧人的成員。</p>
+                    <p>SUGA 還有著不俗的籃球技術和無法抗拒的貓奴屬性。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtu.be/PxnuqFD-f9c?si=4ppzaPltNeSRmrO7" target="_blank" class="album-card">
+                    <img src="image/suga_album1.jpg" alt="Suga Album 1">
+                    <h3>D-DAY</h3>
+                </a>
+                <a href="https://youtu.be/YZ0Exxdj7YQ?si=sblYyCwuRALYFkDD" target="_blank" class="album-card">
+                    <img src="image/suga_album2.jpg" alt="Suga Album 2">
+                    <h3>D-2</h3>
+                </a>
+                <a href="https://youtu.be/nTe07O-fd18?si=I0wLcJBdhV0lZtLn" target="_blank" class="album-card">
+                    <img src="image/suga_album3.jpg" alt="Suga Album 3">
+                    <h3>Agust-D</h3>
+                </a>
+            </div>
+        </section>
+        
+        <section id="jhope" class="album-section">
+            <h2>j-hope（鄭號錫 / Jung Ho-seok）</h2>
+            <div class="info-box">
+                <img src="image/jhope2.jpg" alt="J-Hope Photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1994年2月18日</p>
+                    <p><strong>位置：</strong>副Rapper、主舞擔當</p>
+                    <p><strong>特點：</strong></p>
+                    <p>j-hope的名字本身就象徵著「希望」，他的陽光與能量無時無刻不在感染著身邊的人。</p>
+                    <p>作為團隊的主舞，他在舞台上的爆發力和律動感令人讚嘆，為BTS的表演注入靈魂。</p>
+                    <p>他的個人Mixtape《Hope World》以多彩的音樂風格與正能量的訊息，讓人看到了他的音樂夢想與個性。</p>
+                    <p>他還參與了許多BTS舞蹈的編排工作，為團隊的整體表演提供了重要支持。</p>
+                    <p>生活中的j-hope開朗幽默，喜歡用「希望」去治癒每一個人，但他也有安靜專注的一面，是個默默努力的完美主舞。</p>
+                </div>     
+            </div>
+            <div class="album-grid">
+                <a href="https://youtu.be/4pPaQ0b-3kc?si=SJXo7wlpQ5CWT53k" target="_blank" class="album-card">
+                    <img src="image/jhope_album1.jpg" alt="J-Hope Album 1">
+                    <h3>HOPE ON THE STREET VOL.1</h3>
+                </a>
+                <a href="https://youtu.be/I40ucXxLDwg?si=v0AkGLlJpO_4YK9D" target="_blank" class="album-card">
+                    <img src="image/jhope_album2.jpg" alt="J-Hope Album 2">
+                    <h3>Jack In The Box</h3>
+                </a>
+                <a href="https://youtu.be/OZD_EU_hMUQ?si=7KYI7s-FF1qHHPHs" target="_blank" class="album-card">
+                    <img src="image/jhope_album3.jpg" alt="J-Hope Album 3">
+                    <h3>Blue side</h3>
+                </a>
+                <a href="https://youtu.be/i23NEQEFpgQ?si=wZA53DHjIJnaTBtl" target="_blank" class="album-card">
+                    <img src="image/jhope_album4.jpg" alt="J-Hope Album 4">
+                    <h3>Chicken Noodle Soup</h3>
+                </a>
+                <a href="https://youtu.be/M1mKyHWTrdc?si=P9b-vxCXSAgjROaV" target="_blank" class="album-card">
+                    <img src="image/jhope_album5.jpg" alt="J-Hope Album 5">
+                    <h3>Hope World</h3>
+                </a>
+            </div>
+        </section>
+        
+        <section id="jimin" class="album-section">
+            <h2>Jimin（朴智旻 / Park Ji-min）</h2>
+            <div class="info-box">
+                <img src="image/jimin2.jpg" alt="Jimin Photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1995年10月13日</p>
+                    <p><strong>位置：</strong>主舞、主唱</p>
+                    <p><strong>特點：</strong></p>
+                    <p>Jimin以輕盈優雅的舞蹈和溫柔感性的嗓音征服了無數粉絲。</p>
+                    <p>他曾學習現代舞，這為他在出道後的舞台表現上增添了獨特的藝術性。</p>
+                    <p>他的聲音既細膩又充滿情感，經典個人曲《Lie》和《Serendipity》正是他天賦的最好展現。</p>
+                    <p>在團隊中，他以對成員的貼心關懷和溫柔舉動被譽為「小天使」。</p>
+                    <p>雖然Jimin曾因對自己的表現要求過高而壓力大，但他的努力和韌性讓他成為更好的自己，展現了極大的成長。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtu.be/acWdVkYOzBs?si=J8WzgWGOa8HXvGt1" target="_blank" class="album-card">
+                    <img src="image/jimin_album1.jpg" alt="Jimin Album 1">
+                    <h3>MUSE</h3>
+                </a>
+                <a href="https://youtu.be/zzKV_T9ybe8?si=SCnfE3klEle2rfoB" target="_blank" class="album-card">
+                    <img src="image/jimin_album2.jpg" alt="Jimin Album 2">
+                    <h3>Closer Than This</h3>
+                </a>
+                <a href="https://youtu.be/TLT_MqzRHfY?si=TuR4E83mFWVNBxDY" target="_blank" class="album-card">
+                    <img src="image/jimin_album3.jpg" alt="Jimin Album 3">
+                    <h3>Face</h3>
+                </a>
+                <a href="https://youtu.be/LDPSNwJPnGY?si=FFZ3NAASVLMiz3Ma" target="_blank" class="album-card">
+                    <img src="image/jimin_album4.jpg" alt="Jimin Album 4">
+                    <h3>Christmas Love</h3>
+                </a>
+                <a href="https://youtu.be/PFeT8k2WTOQ?si=2pkY881MRRtIgXed" target="_blank" class="album-card">
+                    <img src="image/jimin_album5.jpg" alt="Jimin Album 5">
+                    <h3>Promise</h3>
+                </a>
+            </div>
+        </section>
+        
+        <section id="v" class="album-section">
+            <h2>V（金泰亨 / Kim Tae-hyung）</h2>
+            <div class="info-box">
+                <img src="image/v2.jpg" alt="V Photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1995年12月30日</p>
+                    <p><strong>位置：</strong>副主唱、外貌擔當</p>
+                    <p><strong>特點：</strong></p>
+                    <p>V擁有低沉且充滿磁性的嗓音，為BTS的音樂增添了獨特的質感。</p>
+                    <p>他的個性多變且魅力十足，既能在舞台上散發致命吸引力，又能私下展現天真調皮的一面。</p>
+                    <p>他的個人曲《Singularity》和《Winter Bear》展示了他作為音樂人的藝術深度和個人魅力。</p>
+                    <p>V對藝術充滿熱情，尤其熱愛攝影與畫作。</p>
+                    <p>他的「CGV（CG美貌）」讓他成為時尚圈寵兒，但他從不局限於外表，而是致力於用實力證明自己。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtu.be/HAWYOuMGkK0?si=dJ8Mo_teR9rjC4R9" target="_blank" class="album-card">
+                    <img src="image/v_album1.jpg" alt="V Album 1">
+                    <h3>Winter Ahead</h3>
+                </a>
+                <a href="https://youtu.be/62peQdQv4uo?si=TdJ1em0YSAJaiKJP" target="_blank" class="album-card">
+                    <img src="image/v_album2.jpg" alt="V Album 2">
+                    <h3>FRI(END)S</h3>
+                </a>
+                <a href="https://youtu.be/C8ZxZZZNXMo?si=-nzizSAaM0Gcyl9Z" target="_blank" class="album-card">
+                    <img src="image/v_album3.jpg" alt="V Album 3">
+                    <h3>Layover</h3>
+                </a>
+                <a href="https://youtu.be/2nY0spA5UL4?si=zOjQOTy23GXv1vrZ" target="_blank" class="album-card">
+                    <img src="image/v_album4.jpg" alt="V Album 4">
+                    <h3>Snow Flower</h3>
+                </a>
+                <a href="https://youtu.be/pk7ESz6vtyA?si=t9RKbnO_8PP7-5yz" target="_blank" class="album-card">
+                    <img src="image/v_album5.jpg" alt="V Album 5">
+                    <h3>Winter Bear</h3>
+                </a>
+                <a href="https://youtu.be/f3YhK-oZmY8?si=znfXxhO899fHtghD" target="_blank" class="album-card">
+                    <img src="image/v_album6.jpg" alt="V Album 6">
+                    <h3>Scenery (풍경)</h3>
+                </a>
+            </div>
+        </section>
+        <section id="jungkook" class="album-section">
+            <h2>Jungkook（田柾國 / Jeon Jung-kook）</h2>
+            <div class="info-box">
+                <img src="image/jk2.jpg" alt="Jung Kook Photo">
+                <div class="info-text">
+                    <p><strong>生日：</strong>1997年9月1日</p>
+                    <p><strong>位置：</strong>主唱、領舞、門面擔當</p>
+                    <p><strong>特點：</strong></p>
+                    <p>Jungkook是團隊的「黃金忙內」，年紀最小卻全面發展，一點不輸哥哥們。</p>
+                    <p>他不僅是BTS的主唱，擁有強大的歌唱實力，還是舞蹈和表演上的全能型人才。</p>
+                    <p>他的個人單曲如《Euphoria》和《Still With You》展現了他溫暖細膩的聲音。</p>
+                    <p>Jungkook對各種領域都充滿好奇與天賦，比如攝影、繪畫、運動，甚至連影像剪輯都非常拿手。</p>
+                    <p>他還特別愛與粉絲互動，是眾人心中的暖心小太陽。</p>
+                    <p>無論是舞台上的自信，還是生活中的羞澀，Jungkook都讓人倍感親切與真實。</p>
+                </div>
+            </div>
+            <div class="album-grid">
+                <a href="https://youtu.be/J_n4Ysi5iUM?si=aTZq0G-hvSh9OVEn" target="_blank" class="album-card">
+                    <img src="image/jungkook_album1.jpg" alt="Jung Kook Album 1">
+                    <h3>Never Let Go</h3>
+                </a>
+                <a href="https://youtu.be/cyAkEgxZZgk?si=1jk2Z1P6H9e1e4u1" target="_blank" class="album-card">
+                    <img src="image/jungkook_album2.jpg" alt="Jung Kook Album 2">
+                    <h3>GOLDEN</h3>
+                </a></a>
+                <a href="https://youtu.be/_yTP_L8fC-k?si=77k8w284QXkrAUBc" target="_blank" class="album-card">
+                    <img src="image/jungkook_album5.jpg" alt="Jung Kook Album 5">
+                    <h3>My you</h3>
+                </a>
+                <a href="https://youtu.be/djKdPZiJdvA?si=AGInIlp3ZKo3ph6c" target="_blank" class="album-card">
+                    <img src="image/jungkook_album6.jpg" alt="Jung Kook Album 6">
+                    <h3>Still With You</h3>
+                </a>
+            </div>
+        </section>
+                
+ 
+        <!-- 紀錄片 -->
+        <section id="worldtour">
+            <h2>BTS紀錄片</h2>
+            <div class="solo-album-container">
+
+            <div class="solo-item">
+                <a href="https://www.disneyplus.com/zh-tw/series/are-you-sure/22dWq83bsA6q" target="_blank">
+                <img src="image/poster_group_02.jpg" alt="RM documentary" class="solo-image"></a>
+                <div class="solo-text">
+                    <h3>Jimin & Jung Kook</h3>
+                    <p>《ARE YOU SURE?!》2024.08.08 於 DISNEY PLUS 上線 </p>
+                </div>
+            </div>
+            <div class="solo-item">
+                <a href="https://www.disneyplus.com/zh-tw/series/bts-monuments-beyond-the-star/3ItPowcufUqR" target="_blank">
+                <img src="image/poster_group_01.jpg" alt="RM documentary" class="solo-image"></a>
+                <div class="solo-text">
+                    <h3>BTS</h3>
+                    <p>《BTS Monuments：Beyond The Star》2023.12.20 於 DISNEY PLUS 上線 </p>
+                </div>
+            </div>
+            <div class="solo-item">
+                <a href="https://www.disneyplus.com/zh-tw/movies/bts-permission-to-dance-on-stage-la/5gFM4yOqw5YS" target="_blank">
+                <img src="image/poster_group.jpg" alt="RM documentary" class="solo-image"></a>
+                <div class="solo-text">
+                    <h3>BTS</h3>
+                    <p>《PERMISSION TO DANCE ON STAGE》2022.09.08 於 DISNEY PLUS 上線 </p>
+                </div>
+            </div>
+            <div class="solo-item">
+                <img src="image/poster_group_03.jpg" alt="RM documentary" class="solo-image">
+                <div class="solo-text">
+                    <h3>BTS</h3>
+                    <p>《IN THE SOOP BTS》2020.08.19 於 TVBS & WEVERSE 播出 </p>
+                </div>
+            </div>
+        </section>
+        <section id="soloprojects">
+            <h2>個人專輯紀錄片</h2>
+            <div class="solo-album-container">
+                
+                <div class="solo-item">
+                    <img src="image/poster_rm.jpg" alt="RM documentary" class="solo-image">
+                    <div class="solo-text">
+                        <h3>RM</h3>
+                        <p>《Right People, Long Places》2024.12.05 於電影院上映 </p>
+                    </div>
+                </div>
+                
+                <div class="solo-item">
+                    <a href="https://www.disneyplus.com/zh-tw/movies/suga-road-to-d-day/30f1LoYHW3wd" target="_blank">
+                    <img src="image/poster_suga.jpg" alt="Suga documentary" class="solo-image"></a>
+                    <div class="solo-text">
+                        <h3>Suga</h3>
+                        <p>《SUGA：ROAD TO D-DAY》2023.04.21 於 DISNEY PLUS 上線</p>
+                    </div>
+                </div>
+                
+                <div class="solo-item">
+                    <a href="https://www.disneyplus.com/zh-tw/movies/j-hope-in-the-box/2YSNFDwfyD3o" target="_blank">
+                    <img src="image/poster_jhope.jpg" alt="J-hope documentary" class="solo-image"></a>
+                    <div class="solo-text">
+                        <h3>J-hope</h3>
+                        <p>《j-hope IN THE BOX》2023.02.17 於 DISNEY PLUS 上線</p>
+                    </div>
+                </div>
+                
+                <div class="solo-item">
+                    <img src="image/poster_jimin.jpg" alt="Jimim documentary" class="solo-image">
+                    <div class="solo-text">
+                        <h3>Jimin</h3>
+                        <p>《Jimin’s Production Diary》2024.10.23 於 WEVERSE 獨家上映</p>
+                    </div>
+                </div>
+                
+                <div class="solo-item">
+                    <a href="https://www.disneyplus.com/zh-tw/series/jung-kook-i-am-still-the-original/2cwiQMVevmpN" target="_blank">
+                    <img src="image/poster_jk.jpg" alt="JK documentary" class="solo-image"></a>
+                    <div class="solo-text">
+                        <h3>Jung Kook</h3>
+                        <p>《I AM STILL》2024.21.03 於 DISNEY PLUS 上線</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--bt21-->
+        <div id="role intro">
+            <span class="text-center">
+                <h2>BT21</h2>
+                <p>BT21 是 BTS 與 LINE FRIENDS 合作創造的卡通角色系列，每位成員參與設計了專屬角色。</p>
+                <p>這八個角色（TATA、KOYA、RJ、SHOOKY、MANG、CHIMMY、COOKY 和 VAN）展現了各自獨特的性格與魅力，深受粉絲喜愛，是 BTS 文化的重要延伸。</p>
+            </span>
+                
+            <div class="bt21-grid">
+                <div class="bt21-item">
+                    <img src="image/koya.png" alt="KOYA">
+                    <div class="bt21-text">
+                        <h3>KOYA</h3>
+                        <p>一隻愛睡覺的考拉，頭上經常有掉落的耳朵。</p>
+                        <p>Made by RM</p>
+                    </div>
+                </div>
+                <div class="bt21-item">
+                    <img src="image/rj.png" alt="RJ">
+                    <div class="bt21-text">
+                        <h3>RJ</h3>
+                        <p>心地善良的白色羊駝，喜歡吃東西並穿大外套。</p>
+                        <p>Made by JIN</p>
+                    </div>
+                </div>
+                <div class="bt21-item">
+                    <img src="image/shookie.png" alt="SHOOKY">
+                    <div class="bt21-text">
+                        <h3>SHOOKY</h3>
+                        <p>調皮的餅乾，害怕牛奶，常愛惡作劇。</p>
+                        <p>Made by SUGA</p>
+                    </div>
+                </div>
+                    
+                <div class="bt21-item">
+                    <img src="image/mang.png" alt="MANG">
+                    <div class="bt21-text">
+                        <h3>MANG</h3>
+                        <p>神秘的舞者，總是戴著馬面具，舞技超群。</p>
+                        <p>Made by J-HOPE</p>
+                    </div>
+                </div>
+                <div class="bt21-item">
+                    <img src="image/chimmy.png" alt="CHIMMY">
+                    <div class="bt21-text">
+                        <h3>CHIMMY</h3>
+                        <p>穿著黃色連帽衫的小狗，充滿努力與好奇心。</p>
+                        <p>Made by JIMIN</p>
+                    </div>
+                </div>
+                    <div class="bt21-item">
+                        <img src="image/tata.png" alt="TATA">
+                        <div class="bt21-text">
+                            <h3>TATA</h3>
+                            <p>宇宙王子，有著熱情的心，善於變形。</p>
+                            <p>Made by V</p>
+                        </div>
+                    </div>
+                <div class="bt21-item">
+                    <img src="image/cooky.png" alt="COOKY">
+                    <div class="bt21-text">
+                        <h3>COOKY</h3>
+                        <p>充滿力量的粉紅兔子，夢想擁有完美的身體。</p>
+                        <p>Made by JUNG KOOK</p>
+                    </div>
+                </div>
+                <div class="bt21-item">
+                    <img src="image/van.png" alt="VAN">
+                    <div class="bt21-text">
+                        <h3>VAN</h3>
+                        <p>智慧型機器人，負責保護 BT21 的大家庭。</p>
+                        <p>代表ARMY</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+    <footer>
+        <p class="endpage">&copy; 2024 ARMY WORLD</p>
+    </footer>
+</body>
+</html>
